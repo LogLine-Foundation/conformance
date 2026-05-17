@@ -1,0 +1,1 @@
+adapter:queue_release declare_adapter queue_release_after_if_ok 2026-05-08T10:03:00Z confirmed_by receipt:sha256:author456 if_ok accept_adapter_declaration if_doubt quarantine_adapter if_not reject_adapter status declared

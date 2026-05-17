@@ -1,0 +1,17 @@
+{
+  "adapter_id": "adapter:http_inbound",
+  "adapter_version": "0.1.0",
+  "adapter_kind": "inbound",
+  "protocol_version": "adapter-protocol-v0",
+  "canon_version": "0.2.0-draft",
+  "effect_class": "none",
+  "declaration_logline": "adapter:http_inbound declare_adapter inbound_http_translation 2026-05-08T10:00:00Z confirmed_by receipt:sha256:author123 if_ok accept_adapter_declaration if_doubt quarantine_adapter if_not reject_adapter status declared",
+  "supports": [
+    "external_input_digest",
+    "http_request_to_logline",
+    "translation_receipt"
+  ],
+  "receipt_scopes": [
+    "translation_receipt"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "profile": "adapter-protocol-v0",
+  "adapter_id": "adapter:http_inbound",
+  "adapter_version": "0.1.0",
+  "canon_version": "0.2.0-draft",
+  "protocol_lips": [
+    "LIP-0004",
+    "LIP-0005",
+    "LIP-0006"
+  ],
+  "status": "partial",
+  "cases": [
+    {
+      "case_id": "external_input_becomes_logline_candidate",
+      "observed": "pass"
+    },
+    {
+      "case_id": "product_examples_not_canonical_adapters",
+      "observed": "pass"
+    }
+  ]
+}

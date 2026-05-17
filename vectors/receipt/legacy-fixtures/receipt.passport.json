@@ -1,0 +1,39 @@
+{
+  "receipt_version": "logline-receipt-v0",
+  "who": "foundation_registry",
+  "did": "issue_passport",
+  "this": "identity:ana",
+  "when": "2026-05-06T12:05:00Z",
+  "confirmed_by": "receipt:sha256:b07fb8087fa69b9eefb3fd58e5727d0a42a94a2ee59428532b398b9b4732febe",
+  "if_ok": "emit_receipt",
+  "if_doubt": "ask_for_evidence",
+  "if_not": "reject",
+  "status": "confirmed",
+  "result": {
+    "name": "Ana Example",
+    "passport": "passport:ana:2026",
+    "identifies": true,
+    "authorizes": false
+  },
+  "evidence": {
+    "mode": "identity_attestation",
+    "input_receipts": [
+      "sha256:b07fb8087fa69b9eefb3fd58e5727d0a42a94a2ee59428532b398b9b4732febe"
+    ],
+    "scope": "identification_only"
+  },
+  "transport": {
+    "emitter": "logline-runtime-rs",
+    "runtime_version": "0.1.x",
+    "channel": "registry-export",
+    "stored_by": "example"
+  },
+  "hashes": {
+    "json_canonicalization": "jcs-rfc8785",
+    "tuple_hash_profile": "logline-length-prefixed-v0",
+    "algorithm": "sha256",
+    "tuple_hash": "sha256:52c758319c341dfd02dcfad4523ea7e4b5b2c69b8ab091f62496c34abdc4903d",
+    "result_hash": "sha256:53fb8839fc25a727552d0e627d21ad26c1286974f5c26d59bf5dd10f0fad55e7",
+    "receipt_hash": "sha256:6b5fa4ba404c611be5c1332ede05bd1ca47e6bdc38ace193af6b75cec3419eca"
+  }
+}

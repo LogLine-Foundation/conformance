@@ -1,0 +1,43 @@
+{
+  "receipt_version": "logline-receipt-v0",
+  "who": "logline_runtime",
+  "did": "simulate",
+  "this": "candidate_act",
+  "when": "2026-05-06T12:00:00Z",
+  "confirmed_by": "missing_evidence",
+  "if_ok": "record_trace",
+  "if_doubt": "simulate",
+  "if_not": "forbid_execution",
+  "status": "doubt",
+  "result": {
+    "receipt_kind": "simulation",
+    "observation": "missing evidence required by confirmed_by",
+    "simulated_route": "simulate",
+    "executed": false,
+    "released": false
+  },
+  "evidence": {
+    "mode": "simulated",
+    "trace": {
+      "branch": "doubt",
+      "reason": "receipt_missing",
+      "route": "simulate",
+      "released": false
+    },
+    "input_receipts": []
+  },
+  "transport": {
+    "emitter": "logline-runtime-rs",
+    "runtime_version": "0.1.x",
+    "channel": "local-cli",
+    "stored_by": "example"
+  },
+  "hashes": {
+    "json_canonicalization": "jcs-rfc8785",
+    "tuple_hash_profile": "logline-length-prefixed-v0",
+    "algorithm": "sha256",
+    "tuple_hash": "sha256:0eb521ebb10168c2b434e801bbc0a1b95fdbadc0592b3b048fa6f9ecbb79c6ac",
+    "result_hash": "sha256:77d3f5efdbd24a6b341a8c47bc890226918c34ce6da64b1027c3d7ec48fa5450",
+    "receipt_hash": "sha256:b07fb8087fa69b9eefb3fd58e5727d0a42a94a2ee59428532b398b9b4732febe"
+  }
+}

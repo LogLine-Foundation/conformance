@@ -1,0 +1,40 @@
+{
+  "receipt_version": "logline-receipt-v0",
+  "who": "policy_gate",
+  "did": "admit",
+  "this": "passport:ana:2026",
+  "when": "2026-05-06T12:10:00Z",
+  "confirmed_by": "receipt:sha256:6b5fa4ba404c611be5c1332ede05bd1ca47e6bdc38ace193af6b75cec3419eca",
+  "if_ok": "release_to_scope",
+  "if_doubt": "ask_for_evidence",
+  "if_not": "deny",
+  "status": "released",
+  "result": {
+    "admissible_until": "2026-05-06T13:10:00Z",
+    "scope": "minilab:demo:read_only",
+    "policy_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "registry_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "boundary_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+  },
+  "evidence": {
+    "mode": "policy_admission",
+    "input_receipts": [
+      "sha256:6b5fa4ba404c611be5c1332ede05bd1ca47e6bdc38ace193af6b75cec3419eca"
+    ],
+    "receipt_persists_after_admissibility_expires": true
+  },
+  "transport": {
+    "emitter": "logline-runtime-rs",
+    "runtime_version": "0.1.x",
+    "channel": "policy-gate",
+    "stored_by": "example"
+  },
+  "hashes": {
+    "json_canonicalization": "jcs-rfc8785",
+    "tuple_hash_profile": "logline-length-prefixed-v0",
+    "algorithm": "sha256",
+    "tuple_hash": "sha256:723dc70878ddd877f43c87a903b88d0425a5eae201705ed9088073aa656072fc",
+    "result_hash": "sha256:f9adb161ee07c2c27bc02f16fd17128c7909676cb1c2e0937e1fa636272339ad",
+    "receipt_hash": "sha256:fff62e0cd80261cf9c81aa1b695cef9602d921790e5b1f151e4afd353bb9fa61"
+  }
+}

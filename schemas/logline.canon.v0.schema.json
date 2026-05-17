@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logline.foundation/spec/logline-canon.schema.json",
+  "title": "LogLine Canon",
+  "type": "object",
+  "required": [
+    "canon",
+    "version",
+    "form",
+    "runtime_walk",
+    "route_kinds",
+    "status_lifecycle",
+    "law",
+    "prohibition"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "canon": {
+      "const": "logline"
+    },
+    "version": {
+      "const": "0.2.0-draft"
+    },
+    "form": {
+      "$ref": "#/$defs/form"
+    },
+    "runtime_walk": {
+      "$ref": "#/$defs/runtime_walk"
+    },
+    "route_kinds": {
+      "$ref": "#/$defs/route_kinds"
+    },
+    "status_lifecycle": {
+      "$ref": "#/$defs/status_lifecycle"
+    },
+    "law": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/logline"
+      }
+    },
+    "prohibition": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/logline"
+      }
+    }
+  },
+  "$defs": {
+    "token": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^\\S+$"
+    },
+    "position_value": {
+      "type": "string",
+      "minLength": 1
+    },
+    "form": {
+      "type": "object",
+      "required": [
+        "who",
+        "did",
+        "this",
+        "when",
+        "confirmed_by",
+        "if_ok",
+        "if_doubt",
+        "if_not",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "who": {
+          "$ref": "#/$defs/position_value"
+        },
+        "did": {
+          "$ref": "#/$defs/position_value"
+        },
+        "this": {
+          "$ref": "#/$defs/position_value"
+        },
+        "when": {
+          "$ref": "#/$defs/position_value"
+        },
+        "confirmed_by": {
+          "$ref": "#/$defs/position_value"
+        },
+        "if_ok": {
+          "$ref": "#/$defs/position_value"
+        },
+        "if_doubt": {
+          "$ref": "#/$defs/position_value"
+        },
+        "if_not": {
+          "$ref": "#/$defs/position_value"
+        },
+        "status": {
+          "$ref": "#/$defs/position_value"
+        }
+      }
+    },
+    "runtime_walk": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "const": "who"
+        },
+        {
+          "const": "did"
+        },
+        {
+          "const": "this"
+        },
+        {
+          "const": "when"
+        },
+        {
+          "const": "confirmed_by"
+        },
+        {
+          "const": "if_ok"
+        },
+        {
+          "const": "if_doubt"
+        },
+        {
+          "const": "if_not"
+        },
+        {
+          "const": "status"
+        }
+      ],
+      "items": false,
+      "minItems": 9,
+      "maxItems": 9
+    },
+    "route_kinds": {
+      "type": "object",
+      "required": [
+        "ok",
+        "doubt",
+        "not",
+        "none"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ok": {
+          "$ref": "#/$defs/token_array"
+        },
+        "doubt": {
+          "$ref": "#/$defs/token_array"
+        },
+        "not": {
+          "$ref": "#/$defs/token_array"
+        },
+        "none": {
+          "$ref": "#/$defs/token_array"
+        }
+      }
+    },
+    "token_array": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/token"
+      },
+      "uniqueItems": true
+    },
+    "status_lifecycle": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/token"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/token_array"
+      }
+    },
+    "logline": {
+      "type": "object",
+      "required": [
+        "who",
+        "did",
+        "this",
+        "when",
+        "confirmed_by",
+        "if_ok",
+        "if_doubt",
+        "if_not",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "who": {
+          "$ref": "#/$defs/token"
+        },
+        "did": {
+          "$ref": "#/$defs/token"
+        },
+        "this": {
+          "$ref": "#/$defs/token"
+        },
+        "when": {
+          "$ref": "#/$defs/token"
+        },
+        "confirmed_by": {
+          "$ref": "#/$defs/token"
+        },
+        "if_ok": {
+          "$ref": "#/$defs/token"
+        },
+        "if_doubt": {
+          "$ref": "#/$defs/token"
+        },
+        "if_not": {
+          "$ref": "#/$defs/token"
+        },
+        "status": {
+          "$ref": "#/$defs/token"
+        }
+      }
+    }
+  }
+}
