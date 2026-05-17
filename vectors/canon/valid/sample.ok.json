@@ -1,0 +1,11 @@
+{
+  "who": "dan",
+  "did": "operate",
+  "this": "invoice_123",
+  "when": "tomorrow",
+  "confirmed_by": "ana",
+  "if_ok": "execute",
+  "if_doubt": "suspend",
+  "if_not": "reject",
+  "status": "pending"
+}

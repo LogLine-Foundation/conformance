@@ -1,0 +1,56 @@
+[
+  {
+    "case_id": "valid-minimal-001",
+    "canon_version": "0.2.0-draft",
+    "input": "valid/minimal.logline",
+    "expected": "pass",
+    "reason": "minimal nine-position LogLine is structurally admissible",
+    "layer": "structural",
+    "severity": "info"
+  },
+  {
+    "case_id": "valid-form-require-001",
+    "canon_version": "0.2.0-draft",
+    "input": "valid/form-require.logline",
+    "expected": "pass",
+    "reason": "form directive requires exactly the canonical nine positions in order",
+    "layer": "syntax",
+    "severity": "info"
+  },
+  {
+    "case_id": "invalid-missing-confirmed-by-001",
+    "canon_version": "0.2.0-draft",
+    "input": "invalid/missing-confirmed-by.logline",
+    "expected": "fail",
+    "reason": "confirmed_by marker and value are required for normal LogLine entries",
+    "layer": "syntax",
+    "severity": "error"
+  },
+  {
+    "case_id": "invalid-marker-order-001",
+    "canon_version": "0.2.0-draft",
+    "input": "invalid/marker-order.logline",
+    "expected": "fail",
+    "reason": "branch markers must appear after confirmed_by in canonical order",
+    "layer": "syntax",
+    "severity": "error"
+  },
+  {
+    "case_id": "ambiguous-none-confirmation-001",
+    "canon_version": "0.2.0-draft",
+    "input": "ambiguous/none-confirmation.logline",
+    "expected": "doubt",
+    "reason": "confirmed_by none must not select confirmed success by omission",
+    "layer": "evidence",
+    "severity": "warning"
+  },
+  {
+    "case_id": "ambiguous-relative-time-001",
+    "canon_version": "0.2.0-draft",
+    "input": "ambiguous/relative-time.logline",
+    "expected": "doubt",
+    "reason": "relative time is parseable but requires explicit context before operational release",
+    "layer": "semantic",
+    "severity": "warning"
+  }
+]

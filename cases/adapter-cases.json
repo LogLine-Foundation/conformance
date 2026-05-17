@@ -1,0 +1,110 @@
+[
+  {
+    "case_id": "adapter_must_not_redefine_canon",
+    "canon_version": "0.2.0-draft",
+    "profile": "adapter-protocol-v0",
+    "expected": "pass",
+    "reason": "adapter may not introduce branch authority that overrides if_ok, if_doubt, if_not, status, or confirmed_by",
+    "layer": "adapter_protocol",
+    "severity": "error"
+  },
+  {
+    "case_id": "external_input_becomes_logline_candidate",
+    "canon_version": "0.2.0-draft",
+    "profile": "adapter-protocol-v0",
+    "expected": "pass",
+    "reason": "inbound adapter must translate external input into a LogLine candidate before runtime judgment",
+    "layer": "adapter_protocol",
+    "severity": "error"
+  },
+  {
+    "case_id": "confirmed_by_resolved_or_auditable_failure",
+    "canon_version": "0.2.0-draft",
+    "profile": "adapter-protocol-v0",
+    "expected": "pass",
+    "reason": "evidence adapter must resolve confirmed_by or fail as doubt, contradiction, or technical uncertainty",
+    "layer": "adapter_protocol",
+    "severity": "error"
+  },
+  {
+    "case_id": "transport_invokes_runtime_without_judging",
+    "canon_version": "0.2.0-draft",
+    "profile": "adapter-protocol-v0",
+    "expected": "pass",
+    "reason": "runtime invocation transport may invoke a runtime but must not claim canonical judgment authority",
+    "layer": "adapter_protocol",
+    "severity": "error"
+  },
+  {
+    "case_id": "release_requires_if_ok",
+    "canon_version": "0.2.0-draft",
+    "profile": "adapter-protocol-v0",
+    "expected": "pass",
+    "reason": "release adapter must not execute external effects unless if_ok was selected by the runtime",
+    "layer": "adapter_protocol",
+    "severity": "error"
+  },
+  {
+    "case_id": "if_doubt_no_mutation",
+    "canon_version": "0.2.0-draft",
+    "profile": "adapter-protocol-v0",
+    "expected": "pass",
+    "reason": "if_doubt must not trigger real-world mutation by default",
+    "layer": "adapter_protocol",
+    "severity": "error"
+  },
+  {
+    "case_id": "receipt_proves_scope",
+    "canon_version": "0.2.0-draft",
+    "profile": "adapter-protocol-v0",
+    "expected": "pass",
+    "reason": "receipt proves scoped event or decision, not universal truth",
+    "layer": "adapter_protocol",
+    "severity": "warning"
+  },
+  {
+    "case_id": "receipt_sink_preserves_hash_and_scope",
+    "canon_version": "0.2.0-draft",
+    "profile": "adapter-protocol-v0",
+    "expected": "pass",
+    "reason": "receipt sink must preserve receipt hash and scope when persisting or emitting receipts",
+    "layer": "adapter_protocol",
+    "severity": "error"
+  },
+  {
+    "case_id": "adapter_manifest_is_auxiliary",
+    "canon_version": "0.2.0-draft",
+    "profile": "adapter-declaration-v0",
+    "expected": "pass",
+    "reason": "JSON manifest helps tools but does not replace the LogLine adapter declaration",
+    "layer": "adapter_declaration",
+    "severity": "warning"
+  },
+  {
+    "case_id": "projection_does_not_redefine_protocol",
+    "canon_version": "0.2.0-draft",
+    "profile": "adapter-declaration-v0",
+    "expected": "pass",
+    "reason": "TypeScript, JSON Schema, Rust traits, and other projections implement contracts but do not redefine them",
+    "layer": "adapter_declaration",
+    "severity": "warning"
+  },
+  {
+    "case_id": "technical_failure_is_not_automatic_if_not",
+    "canon_version": "0.2.0-draft",
+    "profile": "adapter-conformance-v0",
+    "expected": "pass",
+    "reason": "timeouts, network errors, storage failures, invalid JSON, and unavailable runtimes are technical failures unless canonically judged otherwise",
+    "layer": "adapter_conformance",
+    "severity": "error"
+  },
+  {
+    "case_id": "product_examples_not_canonical_adapters",
+    "canon_version": "0.2.0-draft",
+    "profile": "adapter-protocol-v0",
+    "expected": "pass",
+    "reason": "Gateway, Supabase, MCP, Slack, GitHub, passport, visa, admission, and Minilab examples are illustrative only",
+    "layer": "adapter_protocol",
+    "severity": "warning"
+  }
+]

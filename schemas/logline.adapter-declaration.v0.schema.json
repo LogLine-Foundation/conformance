@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logline.foundation/spec/adapter-declaration.schema.json",
+  "title": "LogLine Adapter Declaration Manifest",
+  "type": "object",
+  "required": [
+    "adapter_id",
+    "adapter_version",
+    "adapter_kind",
+    "protocol_version",
+    "canon_version",
+    "effect_class",
+    "declaration_logline"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "adapter_id": {
+      "type": "string",
+      "pattern": "^adapter:[^\\s]+$"
+    },
+    "adapter_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adapter_kind": {
+      "enum": [
+        "inbound",
+        "evidence",
+        "runtime_invocation_transport",
+        "release",
+        "receipt_sink"
+      ]
+    },
+    "protocol_version": {
+      "const": "adapter-protocol-v0"
+    },
+    "canon_version": {
+      "const": "0.2.0-draft"
+    },
+    "effect_class": {
+      "enum": [
+        "none",
+        "read",
+        "write",
+        "external_effect",
+        "irreversible_external_effect"
+      ]
+    },
+    "declaration_logline": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supports": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "receipt_scopes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "translation_receipt",
+          "evidence_receipt",
+          "runtime_invocation_receipt",
+          "release_receipt",
+          "execution_receipt",
+          "persistence_receipt"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "hashes": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

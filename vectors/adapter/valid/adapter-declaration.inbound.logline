@@ -1,0 +1,1 @@
+adapter:http_inbound declare_adapter inbound_http_translation 2026-05-08T10:00:00Z confirmed_by receipt:sha256:author123 if_ok accept_adapter_declaration if_doubt quarantine_adapter if_not reject_adapter status declared

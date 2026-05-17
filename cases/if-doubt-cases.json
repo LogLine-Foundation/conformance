@@ -1,0 +1,217 @@
+{
+  "suite": "logline-canon-conformance",
+  "version": "0.2.0-draft",
+  "description": "Initial conformance corpus for the if_doubt auditable simulation addendum.",
+  "result_classes": [
+    "valid",
+    "invalid",
+    "ambiguous"
+  ],
+  "cases": [
+    {
+      "id": "valid-basic-release-with-token",
+      "class": "valid",
+      "format": "json",
+      "input": {
+        "who": "dan",
+        "did": "operate",
+        "this": "invoice_123",
+        "when": "tomorrow",
+        "confirmed_by": "ana",
+        "if_ok": "execute",
+        "if_doubt": "suspend",
+        "if_not": "reject",
+        "status": "pending"
+      },
+      "expected": {
+        "branch": "ok",
+        "released": true,
+        "reason": "evidence_token_present"
+      }
+    },
+    {
+      "id": "ambiguous-confirmation-missing-routes-to-doubt",
+      "class": "ambiguous",
+      "format": "json",
+      "input": {
+        "who": "dan",
+        "did": "operate",
+        "this": "invoice_123",
+        "when": "tomorrow",
+        "confirmed_by": "none",
+        "if_ok": "execute",
+        "if_doubt": "suspend",
+        "if_not": "reject",
+        "status": "pending"
+      },
+      "expected": {
+        "branch": "doubt",
+        "released": false,
+        "reason": "evidence_missing"
+      }
+    },
+    {
+      "id": "invalid-natural-language-execution",
+      "class": "invalid",
+      "format": "json",
+      "input": {
+        "who": "natural_language",
+        "did": "execute",
+        "this": "payment",
+        "when": "before_logline",
+        "confirmed_by": "none",
+        "if_ok": "execute",
+        "if_doubt": "translate_with_pocket_runtime",
+        "if_not": "forbid",
+        "status": "forbidden"
+      },
+      "expected": {
+        "branch": "not",
+        "released": false,
+        "reason": "prohibited_natural_language_execution"
+      }
+    },
+    {
+      "id": "invalid-act-release-with-no-confirmation",
+      "class": "invalid",
+      "format": "logline",
+      "input": "act release payment any_time confirmed_by none if_ok execute if_doubt suspend if_not reject status pending",
+      "expected": {
+        "branch": "not",
+        "released": false,
+        "reason": "release_without_evidence"
+      }
+    },
+    {
+      "id": "ambiguous-if-doubt-simulation-receipt-required",
+      "class": "ambiguous",
+      "format": "logline",
+      "input": "runtime simulate candidate_act before_release confirmed_by missing_evidence if_ok propose_path if_doubt simulate if_not discard status doubt",
+      "expected": {
+        "branch": "doubt",
+        "released": false,
+        "reason": "simulation_requires_receipt",
+        "receipt_kind": "simulation"
+      }
+    },
+    {
+      "id": "invalid-simulation-receipt-claims-execution",
+      "class": "invalid",
+      "format": "receipt",
+      "input": {
+        "receipt_kind": "simulation",
+        "canon_version": "0.2.0-draft",
+        "logline_digest": "sha256:example",
+        "branch": "doubt",
+        "reason": "receipt_missing",
+        "simulated_route": "ask_or_suspend",
+        "executed": true,
+        "released": false
+      },
+      "expected": {
+        "valid_receipt": false,
+        "reason": "simulation_cannot_execute"
+      }
+    },
+    {
+      "id": "invalid-malformed-lifecycle-transition",
+      "class": "invalid",
+      "format": "transition",
+      "input": {
+        "from": "draft",
+        "to": "released"
+      },
+      "expected": {
+        "valid_transition": false,
+        "reason": "transition_not_allowed"
+      }
+    },
+    {
+      "id": "invalid-duplicate-quorum-witness",
+      "class": "invalid",
+      "format": "evidence",
+      "input": {
+        "confirmed_by": "quorum:2:release_committee",
+        "witnesses": [
+          "ana",
+          "ana"
+        ]
+      },
+      "expected": {
+        "evidence_collapsed": false,
+        "reason": "duplicate_witness"
+      }
+    },
+    {
+      "id": "ambiguous-relative-time-operational-mode",
+      "class": "ambiguous",
+      "format": "json",
+      "input": {
+        "who": "runtime",
+        "did": "operate",
+        "this": "invoice_123",
+        "when": "tomorrow",
+        "confirmed_by": "receipt:sha256:abc",
+        "if_ok": "execute",
+        "if_doubt": "ask_or_suspend",
+        "if_not": "reject",
+        "status": "pending"
+      },
+      "expected": {
+        "branch": "doubt",
+        "released": false,
+        "reason": "relative_time_in_operational_mode"
+      }
+    },
+    {
+      "id": "invalid-branch-route-unknown",
+      "class": "invalid",
+      "format": "json",
+      "input": {
+        "who": "dan",
+        "did": "operate",
+        "this": "invoice_123",
+        "when": "tomorrow",
+        "confirmed_by": "ana",
+        "if_ok": "teleport",
+        "if_doubt": "suspend",
+        "if_not": "reject",
+        "status": "pending"
+      },
+      "expected": {
+        "branch": "not",
+        "released": false,
+        "reason": "unknown_route"
+      }
+    },
+    {
+      "id": "valid-doubt-trace-minimum-shape",
+      "class": "valid",
+      "format": "trace",
+      "input": {
+        "branch": "doubt",
+        "reason": "receipt_missing",
+        "simulated_route": "ask_or_suspend",
+        "released": false
+      },
+      "expected": {
+        "trace_valid": true
+      }
+    },
+    {
+      "id": "invalid-doubt-trace-released-true",
+      "class": "invalid",
+      "format": "trace",
+      "input": {
+        "branch": "doubt",
+        "reason": "receipt_missing",
+        "simulated_route": "ask_or_suspend",
+        "released": true
+      },
+      "expected": {
+        "trace_valid": false,
+        "reason": "doubt_cannot_release"
+      }
+    }
+  ]
+}

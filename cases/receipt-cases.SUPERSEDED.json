@@ -1,0 +1,94 @@
+[
+  {
+    "case_id": "receipt-result-hash-property-order-001",
+    "canon_version": "0.2.0-draft",
+    "profile": "logline-receipt-v0",
+    "expected": "same_result_hash",
+    "reason": "same result object with different property order produces the same result_hash",
+    "layer": "receipt_encoding",
+    "severity": "info"
+  },
+  {
+    "case_id": "receipt-hash-property-order-001",
+    "canon_version": "0.2.0-draft",
+    "profile": "logline-receipt-v0",
+    "expected": "same_receipt_hash",
+    "reason": "same full receipt with different property order produces the same receipt_hash",
+    "layer": "receipt_encoding",
+    "severity": "info"
+  },
+  {
+    "case_id": "receipt-transport-changes-receipt-hash-001",
+    "canon_version": "0.2.0-draft",
+    "profile": "logline-receipt-v0",
+    "expected": "different_receipt_hash",
+    "reason": "changing transport changes historical emission identity",
+    "layer": "receipt_encoding",
+    "severity": "info"
+  },
+  {
+    "case_id": "receipt-result-changes-result-and-receipt-hash-001",
+    "canon_version": "0.2.0-draft",
+    "profile": "logline-receipt-v0",
+    "expected": "different_result_hash_and_receipt_hash",
+    "reason": "changing result changes result identity and full receipt identity",
+    "layer": "receipt_encoding",
+    "severity": "info"
+  },
+  {
+    "case_id": "receipt-transport-does-not-change-result-hash-001",
+    "canon_version": "0.2.0-draft",
+    "profile": "logline-receipt-v0",
+    "expected": "same_result_hash",
+    "reason": "changing only transport does not change result identity",
+    "layer": "receipt_encoding",
+    "severity": "info"
+  },
+  {
+    "case_id": "receipt-tuple-hash-ignores-result-evidence-transport-001",
+    "canon_version": "0.2.0-draft",
+    "profile": "logline-receipt-v0",
+    "expected": "same_tuple_hash",
+    "reason": "tuple_hash covers exactly the nine canonical slots",
+    "layer": "receipt_encoding",
+    "severity": "info"
+  },
+  {
+    "case_id": "receipt-hash-excludes-self-001",
+    "canon_version": "0.2.0-draft",
+    "profile": "logline-receipt-v0",
+    "expected": "same_receipt_hash",
+    "reason": "receipt_hash excludes only hashes.receipt_hash to avoid recursion",
+    "layer": "receipt_encoding",
+    "severity": "info"
+  },
+  {
+    "case_id": "receipt-simulation-never-executes-or-releases-001",
+    "canon_version": "0.2.0-draft",
+    "profile": "logline-receipt-v0",
+    "input": "examples/receipt.simulation.json",
+    "expected": "pass",
+    "reason": "simulation receipt has executed false and released false",
+    "layer": "receipt_semantics",
+    "severity": "info"
+  },
+  {
+    "case_id": "receipt-can-reference-input-receipt-001",
+    "canon_version": "0.2.0-draft",
+    "profile": "logline-receipt-v0",
+    "input": "examples/receipt.passport.json",
+    "expected": "pass",
+    "reason": "receipt can reference prior receipt_hash in evidence.input_receipts",
+    "layer": "receipt_composition",
+    "severity": "info"
+  },
+  {
+    "case_id": "receipt-nested-body-logline-invalid-001",
+    "canon_version": "0.2.0-draft",
+    "profile": "logline-receipt-v0",
+    "expected": "fail",
+    "reason": "receipt with nested body.logline is invalid for this profile",
+    "layer": "receipt_shape",
+    "severity": "error"
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "receipt_version": "logline-receipt-v0",
+  "who": "adapter:local",
+  "did": "execute",
+  "this": "operation:bounded_echo",
+  "when": "2026-05-06T12:11:00Z",
+  "confirmed_by": "receipt:sha256:fff62e0cd80261cf9c81aa1b695cef9602d921790e5b1f151e4afd353bb9fa61",
+  "if_ok": "commit_status",
+  "if_doubt": "emit_doubt_trace",
+  "if_not": "mark_failed",
+  "status": "closed",
+  "result": {
+    "execution_kind": "bounded_adapter_execution",
+    "exit_code": 0,
+    "stdout_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+    "stderr_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "executed": true
+  },
+  "evidence": {
+    "mode": "adapter_execution",
+    "release_receipt": "sha256:fff62e0cd80261cf9c81aa1b695cef9602d921790e5b1f151e4afd353bb9fa61",
+    "input_receipts": [
+      "sha256:fff62e0cd80261cf9c81aa1b695cef9602d921790e5b1f151e4afd353bb9fa61"
+    ],
+    "execution_is_not_release": true
+  },
+  "transport": {
+    "emitter": "logline-runtime-rs",
+    "runtime_version": "0.1.x",
+    "channel": "adapter-local",
+    "stored_by": "example"
+  },
+  "hashes": {
+    "json_canonicalization": "jcs-rfc8785",
+    "tuple_hash_profile": "logline-length-prefixed-v0",
+    "algorithm": "sha256",
+    "tuple_hash": "sha256:a6a34a75e288722ca3416a55c77ad805894d9bcea447173f14e97ea1100223ed",
+    "result_hash": "sha256:c62f5929648170158a2875e36ad574e32e213ac8d05a4bd05e4c92dfef7665b0",
+    "receipt_hash": "sha256:03b621ca988037dcfb95f259ada97cac5102ff142ca6db89350cacf61b3f4fce"
+  }
+}

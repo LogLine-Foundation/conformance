@@ -1,0 +1,256 @@
+{
+  "canon": "logline",
+  "version": "0.2.0-draft",
+  "form": {
+    "who": "<accountable_origin>",
+    "did": "<canonical_act>",
+    "this": "<object_or_payload>",
+    "when": "<time_or_sequence>",
+    "confirmed_by": "<evidence_or_witness>",
+    "if_ok": "<release_consequence>",
+    "if_doubt": "<suspend_or_clarify>",
+    "if_not": "<reject_or_rollback>",
+    "status": "<lifecycle_state>"
+  },
+  "runtime_walk": [
+    "who",
+    "did",
+    "this",
+    "when",
+    "confirmed_by",
+    "if_ok",
+    "if_doubt",
+    "if_not",
+    "status"
+  ],
+  "route_kinds": {
+    "ok": [
+      "enter_translation",
+      "emit_logline",
+      "enter_strong_grammar",
+      "emit_ir",
+      "enter_runtime_walk",
+      "release_to_tower",
+      "execute",
+      "commit_status",
+      "record_trace",
+      "close"
+    ],
+    "doubt": [
+      "ask_or_suspend",
+      "ghost_and_clarify",
+      "remain_unreleased",
+      "return_to_logline",
+      "suspend",
+      "halt",
+      "mark_open",
+      "simulate",
+      "emit_simulation_receipt",
+      "emit_doubt_trace",
+      "propose_possible_world",
+      "ask_for_evidence",
+      "dispatch"
+    ],
+    "not": [
+      "reject",
+      "refuse_translation",
+      "void",
+      "reject_shape",
+      "deny",
+      "do_not_execute",
+      "rollback",
+      "mark_failed",
+      "forbid",
+      "forbid_execution"
+    ],
+    "none": [
+      "none"
+    ]
+  },
+  "status_lifecycle": {
+    "draft": [
+      "pending",
+      "void"
+    ],
+    "pending": [
+      "confirmed",
+      "doubt",
+      "rejected"
+    ],
+    "doubt": [
+      "pending",
+      "rejected",
+      "void"
+    ],
+    "confirmed": [
+      "released",
+      "rejected"
+    ],
+    "released": [
+      "closed",
+      "failed",
+      "rolled_back"
+    ],
+    "failed": [
+      "rolled_back",
+      "closed"
+    ],
+    "rolled_back": [
+      "closed"
+    ],
+    "rejected": [
+      "closed"
+    ],
+    "void": [
+      "closed"
+    ],
+    "closed": []
+  },
+  "law": [
+    {
+      "who": "human_or_authorized_actor",
+      "did": "express_or_author",
+      "this": "intent",
+      "when": "before_runtime",
+      "confirmed_by": "accountability",
+      "if_ok": "enter_translation",
+      "if_doubt": "ask_or_suspend",
+      "if_not": "reject",
+      "status": "source"
+    },
+    {
+      "who": "llm_with_pocket_runtime",
+      "did": "translate",
+      "this": "natural_language",
+      "when": "before_logline",
+      "confirmed_by": "pocket_runtime",
+      "if_ok": "emit_logline",
+      "if_doubt": "ghost_and_clarify",
+      "if_not": "refuse_translation",
+      "status": "translator"
+    },
+    {
+      "who": "logline",
+      "did": "hold",
+      "this": "act",
+      "when": "at_runtime_boundary",
+      "confirmed_by": "nine_position_form",
+      "if_ok": "enter_strong_grammar",
+      "if_doubt": "remain_unreleased",
+      "if_not": "void",
+      "status": "canonical_act"
+    },
+    {
+      "who": "strong_grammar",
+      "did": "compile",
+      "this": "logline",
+      "when": "after_logline",
+      "confirmed_by": "grammar_constraints",
+      "if_ok": "emit_ir",
+      "if_doubt": "return_to_logline",
+      "if_not": "reject_shape",
+      "status": "compiler"
+    },
+    {
+      "who": "ir",
+      "did": "model",
+      "this": "consequence",
+      "when": "after_strong_grammar",
+      "confirmed_by": "algebra",
+      "if_ok": "enter_runtime_walk",
+      "if_doubt": "suspend",
+      "if_not": "reject",
+      "status": "formal"
+    },
+    {
+      "who": "runtime",
+      "did": "walk",
+      "this": "logline",
+      "when": "at_admissibility",
+      "confirmed_by": "evidence",
+      "if_ok": "release_to_tower",
+      "if_doubt": "suspend",
+      "if_not": "deny",
+      "status": "judge"
+    },
+    {
+      "who": "if_doubt",
+      "did": "model",
+      "this": "auditable_simulation",
+      "when": "during_doubt",
+      "confirmed_by": "doubt_trace",
+      "if_ok": "record_trace",
+      "if_doubt": "emit_simulation_receipt",
+      "if_not": "forbid_execution",
+      "status": "canonical"
+    },
+    {
+      "who": "tower",
+      "did": "operate",
+      "this": "released_consequence",
+      "when": "after_admissibility",
+      "confirmed_by": "runtime_release",
+      "if_ok": "execute",
+      "if_doubt": "halt",
+      "if_not": "do_not_execute",
+      "status": "operator"
+    },
+    {
+      "who": "evidence",
+      "did": "close",
+      "this": "consequence",
+      "when": "after_operation",
+      "confirmed_by": "receipt",
+      "if_ok": "commit_status",
+      "if_doubt": "mark_open",
+      "if_not": "mark_failed",
+      "status": "closure"
+    }
+  ],
+  "prohibition": [
+    {
+      "who": "natural_language",
+      "did": "execute",
+      "this": "*",
+      "when": "before_logline",
+      "confirmed_by": "*",
+      "if_ok": "*",
+      "if_doubt": "translate_with_pocket_runtime",
+      "if_not": "forbid",
+      "status": "forbidden"
+    },
+    {
+      "who": "llm",
+      "did": "become",
+      "this": "automation",
+      "when": "*",
+      "confirmed_by": "*",
+      "if_ok": "*",
+      "if_doubt": "operator_only",
+      "if_not": "forbid",
+      "status": "forbidden"
+    },
+    {
+      "who": "act",
+      "did": "bypass",
+      "this": "logline",
+      "when": "*",
+      "confirmed_by": "*",
+      "if_ok": "*",
+      "if_doubt": "suspend",
+      "if_not": "reject",
+      "status": "forbidden"
+    },
+    {
+      "who": "act",
+      "did": "release",
+      "this": "*",
+      "when": "*",
+      "confirmed_by": "none",
+      "if_ok": "*",
+      "if_doubt": "suspend",
+      "if_not": "reject",
+      "status": "forbidden"
+    }
+  ]
+}

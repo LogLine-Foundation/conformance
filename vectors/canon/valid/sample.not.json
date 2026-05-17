@@ -1,0 +1,11 @@
+{
+  "who": "natural_language",
+  "did": "execute",
+  "this": "payment",
+  "when": "before_logline",
+  "confirmed_by": "none",
+  "if_ok": "execute",
+  "if_doubt": "translate_with_pocket_runtime",
+  "if_not": "forbid",
+  "status": "forbidden"
+}

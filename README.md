@@ -17,8 +17,8 @@ This repo is **conformance**. It is allowed — required, even — to have schem
 | path | role |
 |---|---|
 | `schemas/` | Machine-readable specs (JSON Schema 2020-12). Each canon file gets a `.schema.json`. |
-| `vectors/valid/` | Receipts that MUST pass conformance. Hashes computed correctly. |
-| `vectors/invalid/` | Receipts that MUST fail conformance. Each filename names the violation. |
+| `vectors/receipt/valid/` (and other layers) | Receipts that MUST pass conformance. Hashes computed correctly. |
+| `vectors/receipt/invalid/` (and other layers) | Receipts that MUST fail conformance. Each filename names the violation. |
 | `hash-profiles/` | Specifications of canonicalization + hash algorithms referenced from the schema. |
 | `fixtures/` | Convenience: one canonical valid + one canonical invalid for fast-dev import. |
 | `tools/` | Reference verifier (`verify-receipt.mjs`, Node, zero deps). Implements the schema rules manually — *not* a JSON-Schema-validator-based implementation. See note below. |
@@ -35,7 +35,7 @@ This repo is **conformance**. It is allowed — required, even — to have schem
 
 ```bash
 # verify a single receipt
-node tools/verify-receipt.mjs vectors/valid/dan-rested.json
+node tools/verify-receipt.mjs vectors/receipt/valid/dan-rested.json
 
 # run full conformance (all valid pass, all invalid fail)
 node tools/verify-receipt.mjs --suite
@@ -85,14 +85,14 @@ In an **emitted receipt** (what conformance validates):
 - `hashes.tuple_hash` and `hashes.content_hash` MUST be resolved 64-char lowercase hex
 - the file is **consumable as an instance**: passes the JSON Schema, verifies under the reference verifier
 
-The canon mold therefore does **not** pass `vectors/valid/`. It documents shape; conformance proves engines obey that shape. Both are consumable — the canon as a mold, the receipt as an instance. They live in different repos.
+The canon mold therefore does **not** pass `vectors/receipt/valid/` (and other layers). It documents shape; conformance proves engines obey that shape. Both are consumable — the canon as a mold, the receipt as an instance. They live in different repos.
 
 ## How implementations consume this
 
 1. Pin a SHA of this repo (or of `canon` + `conformance` jointly).
 2. Build-time: download `schemas/logline.receipt.v0.schema.json` and `vectors/`, verify SHA, cache.
 3. Generate types from schema (`typify` → Rust, `json-schema-to-typescript` → TS, etc).
-4. Run the test suite against your engine — every vector in `vectors/valid/` must verify, every vector in `vectors/invalid/` must be rejected with the violation named in its filename.
+4. Run the test suite against your engine — every vector in `vectors/receipt/valid/` (and other layers) must verify, every vector in `vectors/receipt/invalid/` (and other layers) must be rejected with the violation named in its filename.
 
 If your engine passes, you may declare conformance with `logline.receipt.v0`. Otherwise you do not.
 

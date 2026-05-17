@@ -209,8 +209,8 @@ function suiteRun(root) {
     }
     return out
   }
-  const valid = findJson(join(dir, "valid")).sort()
-  const invalid = findJson(join(dir, "invalid")).sort()
+  const valid = findJson(join(dir, "receipt", "valid")).sort()
+  const invalid = findJson(join(dir, "receipt", "invalid")).sort()
 
   let pass = 0, fail = 0
   for (const f of valid) {
