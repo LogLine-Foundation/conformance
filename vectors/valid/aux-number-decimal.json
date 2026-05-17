@@ -1,0 +1,25 @@
+{
+  "receipt_version": "logline.receipt.v0",
+  "who": "dan",
+  "did": "measured",
+  "this": "number_formatting",
+  "when": "2026-05-17T08:00:00Z",
+  "confirmed_by": "dan",
+  "if_ok": "",
+  "if_doubt": "",
+  "if_not": "",
+  "status": "claimed",
+  "integer": 8,
+  "decimal_half": 0.5,
+  "negative_pi_approx": -3.14,
+  "safe_int_max": 9007199254740991,
+  "zero": 0,
+  "small_decimal": 0.00001,
+  "hashes": {
+    "tuple_hash": "2567c29fd142cf8921d30eee1a992adfa526510db6fe561914e0bcc8b6ee24af",
+    "content_hash": "82df9acd14f67a0b8ebaa6622a3357b20bb9626d976f0b2fda9cf8a56bf0aa10",
+    "algorithm": "sha256"
+  },
+  "json_canonicalization": "jcs-rfc8785",
+  "id": "82df9acd14f67a0b8ebaa6622a3357b20bb9626d976f0b2fda9cf8a56bf0aa10"
+}

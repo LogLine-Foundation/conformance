@@ -1,0 +1,48 @@
+{
+  "receipt_version": "logline.receipt.v0",
+  "who": "dan",
+  "did": "ordered",
+  "this": "array_preservation",
+  "when": "2026-05-17T08:00:00Z",
+  "confirmed_by": "dan",
+  "if_ok": "",
+  "if_doubt": "",
+  "if_not": "",
+  "status": "claimed",
+  "ordered_steps": [
+    "three",
+    "one",
+    "two"
+  ],
+  "nested_arrays": [
+    [
+      1,
+      2
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      5,
+      6
+    ]
+  ],
+  "mixed": [
+    {
+      "a": 1
+    },
+    {
+      "b": 2
+    },
+    "plain",
+    42
+  ],
+  "hashes": {
+    "tuple_hash": "aeab984c4b65a566b815a164b21f7253052708b0a9cda3b5197f940f4b6c9678",
+    "content_hash": "25af1c775f04490d8bc09204601912a2d43a9533506a34c14f8512e4095d9f01",
+    "algorithm": "sha256"
+  },
+  "json_canonicalization": "jcs-rfc8785",
+  "id": "25af1c775f04490d8bc09204601912a2d43a9533506a34c14f8512e4095d9f01"
+}

@@ -1,0 +1,22 @@
+{
+  "receipt_version": "logline.receipt.v0",
+  "who": "dan",
+  "did": "rested",
+  "this": "slept_well",
+  "when": "2026-05-17T07:30:00Z",
+  "confirmed_by": "dan",
+  "if_ok": "continue_minilab_work",
+  "if_doubt": "",
+  "if_not": "",
+  "status": "claimed",
+  "duration_hours": 8,
+  "subjective_state": "rested",
+  "context_source": "self_report",
+  "hashes": {
+    "tuple_hash": "6ace2eed03aa73839414db1d76a3bf08880d8ae50f5db81405c85f2b269ef1ee",
+    "content_hash": "f8ebdffe55a00cedc5035e3778a6172424afba64cf86dcd38f885915e4448d68",
+    "algorithm": "sha256"
+  },
+  "json_canonicalization": "jcs-rfc8785",
+  "id": "f8ebdffe55a00cedc5035e3778a6172424afba64cf86dcd38f885915e4448d68"
+}

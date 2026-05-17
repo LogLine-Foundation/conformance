@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/LogLine-Foundation/conformance/main/schemas/logline.receipt.v0.schema.json",
+  "title": "LogLineReceipt",
+  "description": "Nine-slot accountable act. Three hash layers: tuple (pure 9 slots), content (slots + aux), envelope (slots + aux + transport).",
+  "type": "object",
+  "required": [
+    "id",
+    "receipt_version",
+    "who",
+    "did",
+    "this",
+    "when",
+    "confirmed_by",
+    "if_ok",
+    "if_doubt",
+    "if_not",
+    "status",
+    "hashes",
+    "json_canonicalization"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "Content-addressed identifier. MUST equal hashes.content_hash.",
+      "x-logline-derived-from": "hashes.content_hash"
+    },
+    "receipt_version": {
+      "const": "logline.receipt.v0",
+      "description": "Frozen at v0. Implementations that emit any other value are not conformant."
+    },
+    "who":          { "type": "string", "x-logline-slot": 1 },
+    "did":          { "type": "string", "x-logline-slot": 2 },
+    "this":         { "type": "string", "x-logline-slot": 3 },
+    "when":         { "type": "string", "x-logline-slot": 4, "description": "ISO-8601 date-time when authoritative; free string otherwise. The slot is authoritative; format is recommended but not enforced at v0." },
+    "confirmed_by": { "type": "string", "x-logline-slot": 5 },
+    "if_ok":        { "type": "string", "x-logline-slot": 6 },
+    "if_doubt":     { "type": "string", "x-logline-slot": 7 },
+    "if_not":       { "type": "string", "x-logline-slot": 8 },
+    "status":       { "type": "string", "x-logline-slot": 9 },
+
+    "hashes": { "$ref": "#/$defs/Hashes" },
+
+    "json_canonicalization": {
+      "const": "jcs-rfc8785",
+      "description": "Canonicalization profile used for all three hashes. Frozen at jcs-rfc8785 in v0."
+    },
+
+    "result":    { "not": {}, "description": "FORBIDDEN. Earlier drafts placed result/evidence inside the receipt; v0 keeps the receipt narrow. Result is an upstream concern, not a receipt field." },
+    "evidence":  { "not": {}, "description": "FORBIDDEN. Same rationale as result. Engines that need evidence should attach it via a separate evidence record content-addressed by this receipt's id." },
+    "transport": { "not": {}, "description": "FORBIDDEN at the receipt level. Transport metadata belongs ONLY to the Envelope wrapper." }
+  },
+  "additionalProperties": true,
+
+  "x-logline-aux-fields": {
+    "description": "Any top-level field not in the required nine slots / hashes / version / canonicalization is AUX. AUX is free-form and included in content_hash. AUX is NOT included in tuple_hash. AUX MUST NOT shadow reserved field names. AUX MUST NOT use any of the forbidden-legacy names.",
+    "policy": "free",
+    "reserved": ["id", "hashes", "receipt_version", "json_canonicalization", "who", "did", "this", "when", "confirmed_by", "if_ok", "if_doubt", "if_not", "status"],
+    "forbidden_legacy": ["result", "evidence", "transport"]
+  },
+
+  "x-logline-hash-derivations": {
+    "tuple_hash": {
+      "algorithm": "sha256",
+      "canonicalization": "jcs-rfc8785",
+      "input_strategy": "pick",
+      "input_fields": ["who", "did", "this", "when", "confirmed_by", "if_ok", "if_doubt", "if_not", "status"],
+      "computed_at": "emission",
+      "description": "Identifies the pure act (nine slots, nothing else). Stable across re-interpretations."
+    },
+    "content_hash": {
+      "algorithm": "sha256",
+      "canonicalization": "jcs-rfc8785",
+      "input_strategy": "exclude",
+      "input_excluded_fields": ["id", "hashes"],
+      "computed_at": "emission",
+      "description": "Identifies the interpreted act (slots + aux + meta, but NOT transport). The receipt id equals this value."
+    },
+    "envelope_hash": {
+      "algorithm": "sha256",
+      "canonicalization": "jcs-rfc8785",
+      "input_strategy": "wrap",
+      "input_wrap_shape": { "content": "<receipt>", "transport": "<TransportMeta>" },
+      "computed_at": "transport_boundary",
+      "stored_in_receipt": false,
+      "description": "Identifies the transported package. Lives ONLY on the Envelope wrapper. The receipt itself has no envelope_hash field. Computed by the sender at every boundary crossing; verified by the receiver before accepting content."
+    }
+  },
+
+  "$defs": {
+    "Hashes": {
+      "type": "object",
+      "required": ["tuple_hash", "content_hash", "algorithm"],
+      "properties": {
+        "tuple_hash":   { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "content_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "algorithm":    { "const": "sha256" }
+      },
+      "additionalProperties": false,
+      "description": "Hashes computed at receipt emission. envelope_hash deliberately does NOT live here — it is a property of the transport wrapper (Envelope), not of the resting receipt."
+    },
+
+    "TransportMeta": {
+      "type": "object",
+      "required": ["sent_by", "sent_to", "sent_at"],
+      "properties": {
+        "sent_by": { "type": "string", "description": "Entity identifier of the sender." },
+        "sent_to": { "type": "string", "description": "Entity identifier of the recipient." },
+        "sent_at": { "type": "string", "format": "date-time" },
+        "channel": { "type": "string", "description": "Optional. Free-form transport channel name (e.g. 'supabase.rpc', 'mcp.command', 'http.post')." }
+      },
+      "additionalProperties": true
+    },
+
+    "Envelope": {
+      "type": "object",
+      "required": ["content", "transport", "envelope_hash"],
+      "properties": {
+        "content":       { "$ref": "#" },
+        "transport":     { "$ref": "#/$defs/TransportMeta" },
+        "envelope_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      },
+      "additionalProperties": false,
+      "description": "Transport wrapper. Computed by sender. content is the full receipt (with its own emission-time hashes); envelope_hash covers {content, transport} canonicalized together."
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "receipt_version": "logline.receipt.v0",
+  "who": "dan",
+  "did": "noted",
+  "this": "unicode_payload",
+  "when": "2026-05-17T08:00:00Z",
+  "confirmed_by": "dan",
+  "if_ok": "",
+  "if_doubt": "",
+  "if_not": "",
+  "status": "claimed",
+  "note_pt_br": "Dan dormiu oito horas — descansado, café ☕",
+  "emoji_above_bmp": "🌙",
+  "control_chars": "tab:\there\nnewline:end",
+  "hashes": {
+    "tuple_hash": "cbb5692ba8558aa7e36ced15a38381bcf14cb0440bb1dca52cfc54d71ed4cb9b",
+    "content_hash": "9414f418425ab52c66ca85876df9ac6d8483563d19cc30c788edabe1b5f3b217",
+    "algorithm": "sha256"
+  },
+  "json_canonicalization": "jcs-rfc8785",
+  "id": "9414f418425ab52c66ca85876df9ac6d8483563d19cc30c788edabe1b5f3b217"
+}

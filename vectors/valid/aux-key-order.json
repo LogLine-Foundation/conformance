@@ -1,0 +1,24 @@
+{
+  "receipt_version": "logline.receipt.v0",
+  "who": "dan",
+  "did": "stress_tested",
+  "this": "key_ordering",
+  "when": "2026-05-17T08:00:00Z",
+  "confirmed_by": "dan",
+  "if_ok": "",
+  "if_doubt": "",
+  "if_not": "",
+  "status": "claimed",
+  "zebra": 1,
+  "yak": 2,
+  "alpha": 3,
+  "Mu": 4,
+  "_underscore_first": 5,
+  "hashes": {
+    "tuple_hash": "80ca4396b583001d273114b85dc2fffea2608addd5505cfe30afb82de0203f9f",
+    "content_hash": "34c51fb8fa96efb3c2d6b6a75a3064eda60357db7c1f506eb7e77564f8fca409",
+    "algorithm": "sha256"
+  },
+  "json_canonicalization": "jcs-rfc8785",
+  "id": "34c51fb8fa96efb3c2d6b6a75a3064eda60357db7c1f506eb7e77564f8fca409"
+}

@@ -1,0 +1,18 @@
+{
+  "receipt_version": "logline.receipt.v0",
+  "did": "rested",
+  "this": "slept_well",
+  "when": "2026-05-17T07:30:00Z",
+  "confirmed_by": "dan",
+  "if_ok": "continue_minilab_work",
+  "if_doubt": "",
+  "if_not": "",
+  "status": "claimed",
+  "json_canonicalization": "jcs-rfc8785",
+  "hashes": {
+    "tuple_hash": "c42b5575d95be01a72875030ce42ce8a07cf345993adea3dd8108f35bd917935",
+    "content_hash": "123670aeff53539bb06390f1d7e673c27d93f400fd501b7a8e550b727da05a9f",
+    "algorithm": "sha256"
+  },
+  "id": "123670aeff53539bb06390f1d7e673c27d93f400fd501b7a8e550b727da05a9f"
+}

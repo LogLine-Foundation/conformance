@@ -1,0 +1,19 @@
+{
+  "receipt_version": "logline.receipt.v0",
+  "who": "",
+  "did": "",
+  "this": "",
+  "when": "",
+  "confirmed_by": "",
+  "if_ok": "",
+  "if_doubt": "",
+  "if_not": "",
+  "status": "",
+  "hashes": {
+    "tuple_hash": "35b20f03e04f2073adf068ec9f5e893c476ed626933611bbf3c64edfd6a054ef",
+    "content_hash": "6ccd6e8d8a8a13b083bf5ed75c7c71d9f6d8ac9ae55cd036bdf5f39fb91102d8",
+    "algorithm": "sha256"
+  },
+  "json_canonicalization": "jcs-rfc8785",
+  "id": "6ccd6e8d8a8a13b083bf5ed75c7c71d9f6d8ac9ae55cd036bdf5f39fb91102d8"
+}
