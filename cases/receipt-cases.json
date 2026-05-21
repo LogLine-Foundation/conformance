@@ -1,0 +1,67 @@
+{
+  "suite": "logline.receipt.v0",
+  "version": "0.2.0-draft",
+  "lip": "LIP-0007",
+  "cases": [
+    {
+      "id": "tuple-hash-jcs",
+      "description": "tuple_hash is sha256 of JCS-canonicalized 9-slot object",
+      "rule": "tuple_hash = sha256(jcs(pick: who, did, this, when, confirmed_by, if_ok, if_doubt, if_not, status))"
+    },
+    {
+      "id": "content-hash-excludes-id-and-hashes",
+      "description": "content_hash is sha256 of JCS-canonicalized receipt with id and hashes excluded",
+      "rule": "content_hash = sha256(jcs(all_except: [id, hashes]))"
+    },
+    {
+      "id": "id-equals-content-hash",
+      "description": "receipt id MUST equal hashes.content_hash",
+      "rule": "id == hashes.content_hash"
+    },
+    {
+      "id": "hashes-no-extra-fields",
+      "description": "hashes object contains only tuple_hash, content_hash, algorithm",
+      "rule": "additionalProperties: false on hashes"
+    },
+    {
+      "id": "envelope-hash-not-in-receipt",
+      "description": "envelope_hash MUST NOT appear inside the receipt hashes object",
+      "rule": "envelope_hash lives only on the Envelope wrapper"
+    },
+    {
+      "id": "forbidden-result",
+      "description": "result field is forbidden in v0 receipts",
+      "rule": "result: { not: {} }"
+    },
+    {
+      "id": "forbidden-evidence",
+      "description": "evidence field is forbidden in v0 receipts",
+      "rule": "evidence: { not: {} }"
+    },
+    {
+      "id": "forbidden-transport",
+      "description": "transport field is forbidden in v0 receipts (lives on Envelope)",
+      "rule": "transport: { not: {} }"
+    },
+    {
+      "id": "receipt-version-dots",
+      "description": "receipt_version must use dots, not dashes",
+      "rule": "receipt_version == \"logline.receipt.v0\""
+    },
+    {
+      "id": "hash-output-bare-hex",
+      "description": "hash values are bare 64-char lowercase hex, no prefix",
+      "rule": "pattern: ^[0-9a-f]{64}$"
+    },
+    {
+      "id": "aux-included-in-content-hash",
+      "description": "AUX fields are included in content_hash but not in tuple_hash",
+      "rule": "AUX changes content_hash, preserves tuple_hash"
+    },
+    {
+      "id": "envelope-hash-at-transport-boundary",
+      "description": "envelope_hash = sha256(jcs({content, transport})), computed by sender",
+      "rule": "envelope_hash covers the full Envelope wrapper"
+    }
+  ]
+}
